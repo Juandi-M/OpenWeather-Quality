@@ -1,0 +1,36 @@
+<!-- dashboard.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard | Environmental and Sound Data</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="header">
+    <h1>Environment & Sound Dashboard</h1>
+    <div class="clock" id="clock">00:00:00</div>
+</div>
+
+<div class="container">
+    {% for key, value in data.items() %}
+    <div class="card">
+        <h2>{{ key.replace('_', ' ').title() }}</h2>
+        <p class="data">{{ value }}</p>
+    </div>
+    {% endfor %}
+</div>
+
+<script>
+    function updateClock() {
+        const now = new Date();
+        document.getElementById('clock').textContent = now.toLocaleTimeString();
+    }
+    setInterval(updateClock, 1000);
+    updateClock(); // Initial call to display immediately
+</script>
+
+</body>
+</html>
