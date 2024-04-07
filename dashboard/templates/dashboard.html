@@ -6,7 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Environmental Dashboard</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-    <script src="{{ url_for('static', filename='script.js') }}" defer></script>
+    <script src="{{ url_for('static', filename='clock.js') }}" defer></script>
+    <script src="{{ url_for('static', filename='animation.js') }}" defer></script>
+    <script src="{{ url_for('static', filename='dataFetch.js') }}" defer></script>
+    <script src="{{ url_for('static', filename='statusIndicator.js') }}" defer></script>
+    <script src="{{ url_for('static', filename='theme.js') }}" defer></script>
+    <script src="{{ url_for('static', filename='componentUpdates.js') }}" defer></script>
 </head>
 <body>
 
@@ -21,39 +26,70 @@
     <div class="card temperature">
         <img src="{{ url_for('static', filename='icons/Temp.png') }}" alt="Temperature" class="icon">
         <h2>Temperature</h2>
-        <p class="data">{{ data.temperature_C }} °C</p>
+        <div id="temperatureBar" class="indicator-bar">
+            <div id="temperatureIndicator" class="indicator"></div>
+        </div>
+        <p class="data" id="temperature">-- °C</p>
     </div>
     <div class="card humidity">
         <img src="{{ url_for('static', filename='icons/Humidity.png') }}" alt="Humidity" class="icon">
         <h2>Humidity</h2>
-        <span class="status-indicator" id="humidity-status"></span>
-        <p class="data">{{ data.humidity_percent }}%</p>
+        <div id="humidityBar" class="indicator-bar">
+            <div id="humidityIndicator" class="indicator"></div>
+        </div>
+        <p class="data" id="humidity">--%</p>
     </div>
     <div class="card pressure">
         <img src="{{ url_for('static', filename='icons/Barometer.png') }}" alt="Pressure" class="icon">
         <h2>Pressure</h2>
-        <p class="data">{{ data.pressure_hPa }} hPa</p>
+        <div id="pressureBar" class="indicator-bar">
+            <div id="pressureIndicator" class="indicator"></div>
+        </div>
+        <p class="data" id="pressure">-- hPa</p>
     </div>
     <div class="card luminosity">
         <img src="{{ url_for('static', filename='icons/Luminosity.png') }}" alt="Luminosity" class="icon">
         <h2>Luminosity</h2>
-        <p class="data">{{ data.light_lux }} Lux</p>
-    </div>
-    <div class="card uv">
-        <img src="{{ url_for('static', filename='icons/UV.png') }}" alt="UV Index" class="icon">
-        <h2>UV Index</h2>
-        <span class="status-indicator" id="uv-status"></span>
-        <p class="data">{{ data.UV_index }}</p>
+        <div id="lightLuxBar" class="indicator-bar">
+            <div id="lightLuxIndicator" class="indicator"></div>
+        </div>
+        <p class="data" id="lightLux">-- Lux</p>
     </div>
     <div class="card sound">
         <img src="{{ url_for('static', filename='icons/sound.png') }}" alt="Sound Level" class="icon">
         <h2>Sound Level</h2>
-        <p class="data">{{ data.soundLevelLeft_dB }} dB</p>
+        <div class="sound-levels">
+            <span class="sound-level" id="soundLevelLeft"><span class="label">L:</span> -- dB</span>
+            <span class="sound-level" id="soundLevelRight"><span class="label">R:</span> -- dB</span>
+        </div>
+    </div>
+    
+    <div class="card uv">
+        <img src="{{ url_for('static', filename='icons/UV.png') }}" alt="UV Index" class="icon">
+        <h2>UV Index</h2>
+        <div class="uv-values">
+            <span class="uv-value" id="UVA"><span class="label">UVA:</span> --</span>
+            <span class="uv-value" id="UVB"><span class="label">UVB:</span> --</span>
+        </div>
+        <div id="uvIndexBar" class="indicator-bar">
+            <div id="uvIndexIndicator" class="indicator"></div>
+        </div>
     </div>
     <div class="card pm25">
         <img src="{{ url_for('static', filename='icons/pm.png') }}" alt="PM2.5" class="icon">
         <h2>PM2.5</h2>
-        <p class="data">{{ data.PM25_µg_m3 }} µg/m³</p>
+        <div id="pm25Bar" class="indicator-bar">
+            <div id="pm25Indicator" class="indicator"></div>
+        </div>
+        <p class="data" id="PM25">-- µg/m³</p>
+    </div>
+    <div class="card pm10">
+        <img src="{{ url_for('static', filename='icons/pm.png') }}" alt="PM10" class="icon">
+        <h2>PM10</h2>
+        <div id="pm10Bar" class="indicator-bar">
+            <div id="pm10Indicator" class="indicator"></div>
+        </div>
+        <p class="data" id="PM10">-- µg/m³</p>
     </div>
 </div>
 <div id="rain-animation" class="weather-animation"></div>
