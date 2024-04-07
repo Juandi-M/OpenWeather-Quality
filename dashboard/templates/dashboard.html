@@ -4,33 +4,60 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard | Environmental and Sound Data</title>
+    <title>Environmental Dashboard</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script src="{{ url_for('static', filename='script.js') }}" defer></script>
 </head>
 <body>
 
 <div class="header">
-    <h1>Environment & Sound Dashboard</h1>
+    <h1>Weather & Environmental Dashboard</h1>
     <div class="clock" id="clock">00:00:00</div>
+    <button id="rain-toggle">Toggle Rainfall</button>
+    <button id="sun-toggle">Toggle Sunlight</button>
 </div>
 
 <div class="container">
-    {% for key, value in data.items() %}
-    <div class="card">
-        <h2>{{ key.replace('_', ' ').title() }}</h2>
-        <p class="data">{{ value }}</p>
+    <div class="card temperature">
+        <img src="{{ url_for('static', filename='icons/Temp.png') }}" alt="Temperature" class="icon">
+        <h2>Temperature</h2>
+        <p class="data">{{ data.temperature_C }} °C</p>
     </div>
-    {% endfor %}
+    <div class="card humidity">
+        <img src="{{ url_for('static', filename='icons/Humidity.png') }}" alt="Humidity" class="icon">
+        <h2>Humidity</h2>
+        <span class="status-indicator" id="humidity-status"></span>
+        <p class="data">{{ data.humidity_percent }}%</p>
+    </div>
+    <div class="card pressure">
+        <img src="{{ url_for('static', filename='icons/Barometer.png') }}" alt="Pressure" class="icon">
+        <h2>Pressure</h2>
+        <p class="data">{{ data.pressure_hPa }} hPa</p>
+    </div>
+    <div class="card luminosity">
+        <img src="{{ url_for('static', filename='icons/Luminosity.png') }}" alt="Luminosity" class="icon">
+        <h2>Luminosity</h2>
+        <p class="data">{{ data.light_lux }} Lux</p>
+    </div>
+    <div class="card uv">
+        <img src="{{ url_for('static', filename='icons/UV.png') }}" alt="UV Index" class="icon">
+        <h2>UV Index</h2>
+        <span class="status-indicator" id="uv-status"></span>
+        <p class="data">{{ data.UV_index }}</p>
+    </div>
+    <div class="card sound">
+        <img src="{{ url_for('static', filename='icons/sound.png') }}" alt="Sound Level" class="icon">
+        <h2>Sound Level</h2>
+        <p class="data">{{ data.soundLevelLeft_dB }} dB</p>
+    </div>
+    <div class="card pm25">
+        <img src="{{ url_for('static', filename='icons/pm.png') }}" alt="PM2.5" class="icon">
+        <h2>PM2.5</h2>
+        <p class="data">{{ data.PM25_µg_m3 }} µg/m³</p>
+    </div>
 </div>
-
-<script>
-    function updateClock() {
-        const now = new Date();
-        document.getElementById('clock').textContent = now.toLocaleTimeString();
-    }
-    setInterval(updateClock, 1000);
-    updateClock(); // Initial call to display immediately
-</script>
+<div id="rain-animation" class="weather-animation"></div>
+<div id="sun-animation" class="weather-animation"></div>
 
 </body>
 </html>
