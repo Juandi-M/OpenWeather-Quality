@@ -1,5 +1,7 @@
 # Weather and Air Quality Station Project
 
+![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54) ![C++](https://img.shields.io/badge/c++-%2300599C.svg?style=for-the-badge&logo=c%2B%2B&logoColor=white) ![Arduino](https://img.shields.io/badge/-Arduino-00979D?style=for-the-badge&logo=Arduino&logoColor=white) ![Raspberry Pi](https://img.shields.io/badge/-RaspberryPi-C51A4A?style=for-the-badge&logo=Raspberry-Pi) ![Flask](https://img.shields.io/badge/flask-%23000.svg?style=for-the-badge&logo=flask&logoColor=white) ![AWS](https://img.shields.io/badge/AWS-%23FF9900.svg?style=for-the-badge&logo=amazon-aws&logoColor=white)
+
 This comprehensive project combines the power of Arduino Uno R3 and Raspberry Pi 4 to establish a dual-purpose monitoring station that tracks both indoor and outdoor weather conditions as well as air quality metrics. It harnesses a variety of sensors to collect environmental data, and features a Flask-based dashboard for the visualization of the gathered data, providing insights into weather patterns and air quality.
 
 ## Components Required
@@ -51,7 +53,7 @@ This comprehensive project combines the power of Arduino Uno R3 and Raspberry Pi
 - A Flask-based web dashboard, accessible through any web browser, visualizes the collected environmental and sound data. The dashboard provides a real-time view of the data through the `dashboard.html` template styled with `style.css`.
 
 ## Project Structure
-
+```
 OpenWeather-Quality
 │
 ├── README.md # Project documentation
@@ -66,7 +68,9 @@ OpenWeather-Quality
 │
 └── templates # Directory for HTML templates
 └── dashboard.html # HTML template for the dashboard
+```
 
 ## Conclusion
 
 This guide outlines the setup for a comprehensive weather and air quality monitoring station. The system is designed for flexibility, allowing for adjustments and additions based on specific project requirements and goals. Detailed documentation for sensor connections, software setup, and dashboard operation is provided to ensure a smooth project execution and deployment.
+
