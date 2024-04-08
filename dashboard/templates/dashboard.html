@@ -31,6 +31,7 @@
         </div>
         <p class="data" id="temperature">-- °C</p>
     </div>
+    
     <div class="card humidity">
         <img src="{{ url_for('static', filename='icons/Humidity.png') }}" alt="Humidity" class="icon">
         <h2>Humidity</h2>
@@ -39,6 +40,7 @@
         </div>
         <p class="data" id="humidity">--%</p>
     </div>
+
     <div class="card pressure">
         <img src="{{ url_for('static', filename='icons/Barometer.png') }}" alt="Pressure" class="icon">
         <h2>Pressure</h2>
@@ -47,6 +49,7 @@
         </div>
         <p class="data" id="pressure">-- hPa</p>
     </div>
+
     <div class="card luminosity">
         <img src="{{ url_for('static', filename='icons/Luminosity.png') }}" alt="Luminosity" class="icon">
         <h2>Luminosity</h2>
@@ -55,26 +58,46 @@
         </div>
         <p class="data" id="lightLux">-- Lux</p>
     </div>
+
     <div class="card sound">
         <img src="{{ url_for('static', filename='icons/sound.png') }}" alt="Sound Level" class="icon">
         <h2>Sound Level</h2>
+        <div id="soundLevelBar" class="indicator-bar">
+            <div id="soundLevelIndicator" class="indicator"></div>
+        </div>
         <div class="sound-levels">
             <span class="sound-level" id="soundLevelLeft"><span class="label">L:</span> -- dB</span>
             <span class="sound-level" id="soundLevelRight"><span class="label">R:</span> -- dB</span>
         </div>
     </div>
-    
-    <div class="card uv">
+
+    <div class="card uv-index">
         <img src="{{ url_for('static', filename='icons/UV.png') }}" alt="UV Index" class="icon">
         <h2>UV Index</h2>
-        <div class="uv-values">
-            <span class="uv-value" id="UVA"><span class="label">UVA:</span> --</span>
-            <span class="uv-value" id="UVB"><span class="label">UVB:</span> --</span>
-        </div>
-        <div id="uvIndexBar" class="indicator-bar">
+        <p class="data" id="uvIndex">Index: --</p>
+        <div id="uvIndexBar" class="indicator-bar uv-index-bar">
             <div id="uvIndexIndicator" class="indicator"></div>
         </div>
     </div>
+
+    <div class="card uva">
+        <img src="{{ url_for('static', filename='icons/SkinAgingUVA.png') }}" alt="UVA" class="icon">
+        <h2>UVA</h2>
+        <p class="data" id="UVA">-- mW/m²</p>
+        <div id="uvaBar" class="indicator-bar">
+            <div id="uvaIndicator" class="indicator"></div>
+        </div>
+    </div>
+    
+    <div class="card uvb">
+        <img src="{{ url_for('static', filename='icons/SkinCancerUVB.png') }}" alt="UVB" class="icon">
+        <h2>UVB</h2>
+        <p class="data" id="UVB">-- mW/m²</p>
+        <div id="uvbBar" class="indicator-bar">
+            <div id="uvbIndicator" class="indicator"></div>
+        </div>
+    </div>
+
     <div class="card pm25">
         <img src="{{ url_for('static', filename='icons/pm.png') }}" alt="PM2.5" class="icon">
         <h2>PM2.5</h2>
@@ -83,6 +106,7 @@
         </div>
         <p class="data" id="PM25">-- µg/m³</p>
     </div>
+
     <div class="card pm10">
         <img src="{{ url_for('static', filename='icons/pm.png') }}" alt="PM10" class="icon">
         <h2>PM10</h2>
@@ -92,6 +116,7 @@
         <p class="data" id="PM10">-- µg/m³</p>
     </div>
 </div>
+
 <div id="rain-animation" class="weather-animation"></div>
 <div id="sun-animation" class="weather-animation"></div>
 

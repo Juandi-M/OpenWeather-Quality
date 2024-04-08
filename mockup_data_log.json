@@ -1,16 +1,15 @@
 {
-    "timestamp": "2024-04-06 12:00:00",
-    "temperature_C": 22.5,
-    "humidity_%": 45.2,
-    "pressure_hPa": 1013.25,
-    "light_lux": 560,
-    "UVA": 0.123,
-    "UVB": 0.456,
-    "UV_index": 5,
-    "air_quality_raw": 200,
-    "PM2.5_µg/m3": 12.5,
-    "PM10_µg/m3": 25.7,
-    "soundLevelLeft_dB": 35.4,
-    "soundLevelRight_dB": 36.1
-  }
-  
+  "timestamp": "2024-04-06 12:15:00",
+  "temperature_C": 23.7,
+  "humidity_%": 48.3,
+  "pressure_hPa": 1015.5,
+  "light_lux": 45000,
+  "UVA": 375.0,
+  "UVB": 290.0,
+  "UV_index": 5,
+  "air_quality_raw": 150,
+  "PM2.5_µg/m3": 10.3,
+  "PM10_µg/m3": 22.4,
+  "soundLevelLeft_dB": 55.2,
+  "soundLevelRight_dB": 54.7
+}
