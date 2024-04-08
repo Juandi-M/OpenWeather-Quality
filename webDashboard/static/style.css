@@ -29,11 +29,11 @@
 }
 
 body, html {
-    margin: 0;
-    padding: 0;
-    width: 100vw; /* Ensure full viewport width */
-    height: 100vh; /* Ensure full viewport height */
-    overflow-x: hidden; /* Prevent Horizontal Scroll */
+    transform: scale(0.9); /* Scales down content to 90% of its original size */
+    transform-origin: top left; /* Ensures the scaling starts from the top left */
+    width: 111.11%; /* Counteracts the scaling to maintain full width */
+    height: 111.11%; /* Counteracts the scaling to maintain full height */
+    overflow-x: hidden; /* Prevents potential horizontal scrollbar */
     font-family: var(--font-family);
     background: var(--bg-color);
     color: var(--primary-color);
@@ -48,52 +48,71 @@ body.rainfall {
 /* Improved Header Style */
 
 .header {
-    background-color: var(--card-bg-color);
-    padding: 20px 50px;
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    /* Allows the content to wrap on smaller screens */
+    /* Change from column to row to align items on the same line */
+    align-items: center; /* Keep items vertically aligned in the center */
+    justify-content: space-between; /* Distribute space between items */
+    text-align: center; /* Ensure text is centered */
+    padding: 20px;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    background-color: var(--card-bg-color);
+    width: 100%;
 }
 
-.header h1 {
-    color: var(--primary-color);
-    font-size: 28px;
-    /* Increased size for emphasis */
-    flex: 1 100%;
-    /* Allows the title to take the full width on small screens */
-    text-align: center;
-    margin-bottom: 20px;
-    /* Adds space below the title on small screens */
+/* You might want to adjust the container of your buttons to fit into the header correctly. */
+.toggle-buttons {
+    display: flex;
+    justify-content: center;
+    order: 2; /* Ensures that it comes after the clock in layout */
+    flex-grow: 1; /* This will allow it to use any available space */
+    align-items: center; /* Align the buttons vertically in the center */
+}
+
+.button,
+.toggle-buttons button {
+    background-color: var(--accent-color);
+    color: #f5f5f5;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 20px;
+    /* Rounded borders for buttons */
+    cursor: pointer;
+    margin: 0 10px;
+    /* Space between buttons */
+    transition: background-color 0.2s ease-in-out, transform 0.1s ease;
+}
+
+.button:hover,
+.toggle-buttons button:hover {
+    background-color: gray;
+    transform: scale(1.05);
+    /* Slightly enlarges button on hover */
 }
 
 .clock {
-    font-size: 20px;
-    color: var(--secondary-color);
-    margin: 0 20px;
-    /* Adds horizontal margin for spacing */
-    flex: 0 1 auto;
-    /* Flex grow, shrink and basis values */
+    /* Additional styles to ensure the clock aligns properly */
+    padding-right: 20px; /* Right padding to separate from other elements if necessary */
+    order: 1; /* Adjusts the order if required */
+}
+
+/* Header title adjustment */
+.header h1 {
+    flex-grow: 2; /* Allows the title to grow and use any available space */
+    order: 3; /* Adjust the order so title comes at last */
 }
 
 /* #######################################################
 **   CARDS CSS
 ####################################################### */
+
+/* Ensuring .container can accommodate 5 cards */
 .container {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center; /* Horizontally aligns items */
-    align-content: flex-start; /* Aligns rows of items towards the start of the container */
-    gap: 2em;
-    padding: 2em;
-    max-width: calc(100vw - 4em); /* Accounts for padding */
+    justify-content: center; 
+    gap: 20px; 
+    padding: 20px;
     box-sizing: border-box;
-    margin: auto;
-    overflow-x: hidden;
-    overflow-y: auto; /* Allows scrolling if content exceeds container size */
-    min-height: calc(100vh - 4em); /* Adjust based on layout */
 }
 
 .card {
@@ -101,19 +120,23 @@ body.rainfall {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
     background: var(--card-bg-color);
     border-radius: var(--border-radius); /* Use CSS variable for border-radius */
-    width: 250px; /* Width set for a more compact look */
-    margin: 15px; /* Margin around cards */
-    padding: 20px; /* Padding inside cards */
+    width: 220px; /* Width set for a more compact look */
+    margin: 12px; /* Margin around cards */
+    padding: 18px; /* Padding inside cards */
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-between; /* Distribute space evenly between items */
     transition: all 0.3s ease-in-out; /* Smooth transition for hover effects */
     
-    /* Prevent vertical stretching */
-    align-self: flex-start; /* Aligns card to start along the cross axis, preventing vertical stretch */
-    min-height: 300px; /* Minimum height to ensure cards do not become too short */
-    max-height: 600px; /* Maximum height to ensure cards do not stretch too tall */
+   /* Styling adjustments for responsive layout */
+   flex-grow: 1;
+   flex-shrink: 1;
+   flex-basis: 10%; /* Adjust this value based on desired initial size and gap */
+   min-width: 180px; /* Minimum width to ensure usability */
+   min-height: 300px; /* Minimum height to ensure cards do not become too short */
+   max-height: 600px; /* Maximum height to ensure cards do not stretch too tall */
+   align-self: flex-start; /* Aligns card to start along the cross axis, preventing vertical stretch */
 }
 
 /* Data Points Style Enhancement */
@@ -176,37 +199,6 @@ body.rainfall {
     /* Maintain aspect ratio */
     margin-bottom: 20px;
     /* Space below the icon */
-}
-
-/* Enhancements for Buttons */
-
-.toggle-buttons {
-    display: flex;
-    justify-content: center;
-    /* Center the buttons container */
-    flex: 1 100%;
-    /* Full width */
-}
-
-.button,
-.toggle-buttons button {
-    background-color: var(--accent-color);
-    color: #f5f5f5;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 20px;
-    /* Rounded borders for buttons */
-    cursor: pointer;
-    margin: 0 10px;
-    /* Space between buttons */
-    transition: background-color 0.2s ease-in-out, transform 0.1s ease;
-}
-
-.button:hover,
-.toggle-buttons button:hover {
-    background-color: gray;
-    transform: scale(1.05);
-    /* Slightly enlarges button on hover */
 }
 
 /* #######################################################
@@ -313,37 +305,30 @@ body.rainfall {
 #sun-animation.active {
     background-image: url('icons/sun-animation.gif'); /* Example path, adjust accordingly */
 }
-
 /* #######################################################
  ###            Responsive adjustments
  ####################################################### */
-
-/* Combined media queries for optimization and clearer comprehension */
-@media screen and (max-width: 960px) {
-    .container {
-        justify-content: center; /* Center cards on medium screens */
-    }
-
+ 
+/* For very small screens */
+@media screen and (max-width: 600px) {
     .card {
-        max-width: 45%; /* Adjusts for better width on smaller screens */
-    }
-
-    /* Since 768px also falls under 960px, I've combined these rules */
-    .header {
-        justify-content: center;
-        text-align: center;
-    }
-
-    .clock,
-    .toggle-buttons {
-        flex-basis: 100%; /* Full width on smaller screens */
-        justify-content: center; /* Center-align these elements */
-        margin-top: 10px; /* Adds vertical spacing */
+        flex-basis: 100%; /* Full viewport width for small screens */
+        margin: 8px; /* Adjust margin for very small screens */
     }
 }
 
-@media screen and (max-width: 600px) {
+/* For medium screens */
+@media screen and (max-width: 960px) {
     .card {
-        max-width: 90%; /* Full width cards on very small screens for readability */
+        flex-basis: 45%; /* Allow two cards per row with increased space */
+        margin: 8px; /* Adjust margin for medium screens */
+    }
+}
+
+/* For large screens where 5 columns should fit */
+@media screen and (min-width: 1024px) {
+    .card {
+        flex-basis: calc(5% - 5px); /* Smaller, to fit 5 in a row */
+        margin: 10px; /* Consistent spacing */
     }
 }

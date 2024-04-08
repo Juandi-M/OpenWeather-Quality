@@ -17,6 +17,13 @@ This comprehensive project combines the power of Arduino Uno R3 and Raspberry Pi
 - **Assorted cables and connectors**: For interfacing the sensors with the Arduino and Raspberry Pi.
 - **Resistors for I2C pull-up (optional)**: 2.2kΩ to 10kΩ, if needed, to stabilize the I2C bus.
 
+
+## Dashboard
+
+Here is a sneak peek of our Dashboard:
+
+![Dashboard Preview](home.png)
+
 ## Sensor Connections to Arduino Uno R3
 
 | Sensor   | Connection | Pins                    | Additional Components | Notes                       |
