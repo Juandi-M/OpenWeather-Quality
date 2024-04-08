@@ -1,4 +1,4 @@
-from flask import Flask, render_template, abort, jsonify
+from flask import Flask, render_template, abort, jsonify, Response
 import json
 import os
 
@@ -21,8 +21,10 @@ def get_data():
             data['humidity_percent'] = data.pop('humidity_%')
             data['PM25_ug_m3'] = data.pop('PM2.5_µg/m3')
             data['PM10_ug_m3'] = data.pop('PM10_µg/m3')
-            # Return the modified data
-            return jsonify(data)
+            # Return the modified data; manually set the Content-Type header
+            response = jsonify(data)
+            response.headers['Content-Type'] = 'application/json; charset=utf-8'
+            return response
     except json.JSONDecodeError:
         abort(500, description=f"Error: There was an issue decoding the JSON data from '{json_file_path}'.")
     except OSError as e:

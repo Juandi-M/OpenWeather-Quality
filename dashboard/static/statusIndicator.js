@@ -17,9 +17,28 @@ function setIndicatorPosition(indicatorId, value, min, max) {
     indicator.style.left = `${position}%`;
 }
 
-// Update the UV Index indicator position
+// Simplified and consolidated setUVStatus to address NaN and ensure functionality
+
 function setUVStatus(uvIndex) {
-    setIndicatorPosition('uvIndexIndicator', uvIndex, 0, 11);
+    console.log("Received UV Index Value for Calculation:", uvIndex); // Logging 
+
+    let validUVIndex = uvIndex; // Start with the raw value
+    
+    // Ensure value is within expected range if it's numeric, or use default if not
+    if (isNaN(uvIndex) || uvIndex === null || uvIndex === undefined) {
+        console.error("Invalid UV Index Value:", uvIndex);
+        validUVIndex = 0; // Use a default or minimum value that makes sense for your application
+    }
+
+    const position = calculatePosition(validUVIndex, 0, 11);
+    console.log(`uvIndexIndicator - Corrected Value: ${validUVIndex}, Calculated Position: ${position}%`);
+
+    const indicator = document.getElementById('uvIndexIndicator');
+    if (indicator) {
+        indicator.style.left = `${position}%`;
+    } else {
+        console.error('uvIndexIndicator element not found');
+    }
 }
 
 // Update the UVA indicator position
