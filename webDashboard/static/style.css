@@ -1,0 +1,345 @@
+/* #######################################################
+** Enhanced General Website Styles
+####################################################### */
+:root {
+    --bg-color: #f7f7f7;
+    --card-bg-color: #ffffff;
+    --card-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    --border-radius: 10px;
+    /*Cards border radius */
+    --primary-color: #34495e;
+    /* Dark blue for a modern touch */
+    --secondary-color: #16a085;
+    /* Soft green for interactive elements */
+    --accent-color: #2980b9;
+    /* Bright blue for accents */
+    --error-color: #e74c3c;
+    /* Error or warning indications */
+    --success-color: #2ecc71;
+    /* Success state indication */
+    --icon-size: 80px;
+    /* Adjust size as needed */
+    --transition-speed: 0.3s;
+    --indicator-height: 28px;
+    --indicator-dot-size: 19px;
+    /* Size of the indicator dot */
+    --indicator-radius: 10px;
+    --font-family: 'Roboto', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+}
+
+body,
+html {
+    height: 100%;
+    margin: 0;
+    font-family: var(--font-family);
+    background: var(--bg-color);
+    color: var(--primary-color);
+}
+
+/* Improved Header Style */
+
+.header {
+    background-color: var(--card-bg-color);
+    padding: 20px 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    /* Allows the content to wrap on smaller screens */
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.header h1 {
+    color: var(--primary-color);
+    font-size: 28px;
+    /* Increased size for emphasis */
+    flex: 1 100%;
+    /* Allows the title to take the full width on small screens */
+    text-align: center;
+    margin-bottom: 20px;
+    /* Adds space below the title on small screens */
+}
+
+.clock {
+    font-size: 20px;
+    color: var(--secondary-color);
+    margin: 0 20px;
+    /* Adds horizontal margin for spacing */
+    flex: 0 1 auto;
+    /* Flex grow, shrink and basis values */
+}
+
+/* #######################################################
+**   CARDS CSS
+####################################################### */
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    gap: 20px;
+    /* Adjust the gap between cards for better spacing */
+    padding: 20px;
+}
+
+
+.card {
+    border: 1px solid #e0e0e0;
+    /* Light border for definition */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    /* Soft shadow for depth */
+    background: var(--card-bg-color);
+    border-radius: var(--border-radius);
+    /* Adjusting width for a more compact look */
+    width: 250px;
+    /* Narrower cards */
+    margin: 15px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    transition: transform var(--transition-speed), box-shadow var(--transition-speed);
+    transition: all 0.3s ease-in-out;
+    /* Smooth transition for hover effects */
+}
+
+/* Data Points Style Enhancement */
+.card p.data {
+    color: var(--accent-color);
+    /* Use the accent color to highlight data */
+    font-size: 24px;
+    /* Increase font size for better visibility */
+    font-weight: 700;
+    /* Make the font weight bolder */
+    margin: 10px 0 20px;
+    /* Adjust margins for proper spacing */
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+    /* Soft shadow for depth */
+    font-family: 'Poppins', sans-serif;
+    /* Use a modern, clean font */
+}
+
+
+.card:hover {
+    transform: scale(1.03);
+    /* Slight scale up on hover */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    /* Enhanced shadow for depth on hover */
+
+}
+
+.card img.icon {
+    width: 80px;
+    /* Controlled width for consistency */
+    height: 80px;
+    /* Controlled height to match width, maintaining aspect ratio */
+    margin-bottom: 20px;
+    /* Space between image and text */
+}
+
+.card .image-container {
+    width: 100%;
+    /* Full width to match card width */
+    display: flex;
+    /* Enables Flexbox */
+    justify-content: center;
+    /* Center-aligns the image horizontally */
+}
+
+/* Responsive Image Styling */
+.card .image-container img {
+    max-width: 100%;
+    /* Maximum width constraint */
+    max-height: 100%;
+    /* Maximum height constraint */
+    object-fit: cover;
+    /* Ensures cover fit without distorting aspect ratio */
+}
+
+.card img.icon {
+    width: var(--icon-size);
+    /* Adjust icon size */
+    height: var(--icon-size);
+    /* Maintain aspect ratio */
+    margin-bottom: 20px;
+    /* Space below the icon */
+}
+
+/* Enhancements for Buttons */
+
+.toggle-buttons {
+    display: flex;
+    justify-content: center;
+    /* Center the buttons container */
+    flex: 1 100%;
+    /* Full width */
+}
+
+.button,
+.toggle-buttons button {
+    background-color: var(--accent-color);
+    color: #ffffff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 20px;
+    /* Rounded borders for buttons */
+    cursor: pointer;
+    margin: 0 10px;
+    /* Space between buttons */
+    transition: background-color 0.2s ease-in-out, transform 0.1s ease;
+}
+
+.button:hover,
+.toggle-buttons button:hover {
+    background-color: darken(var(--accent-color), 10%);
+    transform: scale(1.05);
+    /* Slightly enlarges button on hover */
+}
+
+/* #######################################################
+**   INDICATOR BARS
+####################################################### */
+.indicator-bar {
+    width: 100%;
+    height: var(--indicator-height);
+    position: relative;
+    margin: 20px auto;
+    border-radius: var(--indicator-radius);
+    overflow: hidden;
+    transition: width 0.3s ease-in-out;
+}
+
+.indicator {
+    /* Reintroduce the white dot with a buffer zone */
+    width: var(--indicator-dot-size);
+    height: var(--indicator-dot-size);
+    background-color: white;
+    border: 2px solid #fff;
+    /* Outer white border for buffer zone */
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2),
+        /* Soft shadow */
+        0 0 0 3px #ffffff;
+    /* White buffer around the dot */
+    transition: left var(--transition-speed) ease;
+}
+
+
+/* Modernized Gradient Styles for Various Indicators */
+.temperature-bar {
+    background: linear-gradient(to right,
+            #81d4fa
+            /* cool/blue */
+            ,
+            #80cbc4
+            /* slightly warmer/green */
+            ,
+            #ffee58
+            /* yellow */
+            ,
+            #ffab91
+            /* warm/orange */
+            ,
+            #ff7043
+            /* warmer/red */
+        );
+}
+
+
+.humidity-bar {
+    background: linear-gradient(to right, #ffccbc, #ffe082, #80cbc4, #81d4fa);
+}
+
+.pressure-bar {
+    background: linear-gradient(to right, #ffcc80, #80cbc4, #ffcc80);
+}
+
+.light-lux-bar {
+    background: linear-gradient(to right, #9fa8da, #81d4fa, #e6ee9c, #ffffff);
+}
+
+.uv-index-bar {
+    background: linear-gradient(to right, #b2dfdb, #ffe082, #ffcc80, #ffab91, #b39ddb);
+}
+
+.uva-bar {
+    background: linear-gradient(to right, #f3e5f5 0%, #ce93d8 50%, #9c27b0 100%);
+}
+
+.uvb-bar {
+    background: linear-gradient(to right,
+            #fce4ec 0%,
+            #f48fb1 50%,
+            #c2185b 100%);
+}
+
+.pm25-bar {
+    background: linear-gradient(to right,
+            #c5e1a5 0%,
+            #dcedc8 25%,
+            #fff59d 50%,
+            #ffcc80 75%,
+            #ef9a9a 100%);
+}
+
+.pm10-bar {
+    background: linear-gradient(to right,
+            #c5e1a5 0%,
+            #dcedc8 25%,
+            #fff59d 50%,
+            #ffcc80 75%,
+            #e57373 100%);
+}
+
+.sound-bar {
+    background: linear-gradient(to right,
+            #80deea 0%,
+            #fff59d 50%,
+            #ffb74d 75%,
+            #ef9a9a 100%);
+}
+
+/* #######################################################
+ ###            Responsive adjustments
+ ####################################################### */
+
+/* Responsive Adjustments for Improved Layout on Various Devices */
+@media screen and (max-width: 960px) {
+    .container {
+        justify-content: center;
+        /* Center cards on medium screens */
+    }
+
+    .card {
+        max-width: 45%;
+        /* Adjust for better width on smaller screens */
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .card {
+        max-width: 90%;
+        /* Full width cards on very small screens for readability */
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .header {
+        justify-content: center;
+        text-align: center;
+    }
+
+    .clock,
+    .toggle-buttons {
+        flex-basis: 100%;
+        /* Full width on small screens */
+        justify-content: center;
+        /* Center-align these elements */
+        margin-top: 10px;
+        /* Adds vertical spacing */
+    }
+}

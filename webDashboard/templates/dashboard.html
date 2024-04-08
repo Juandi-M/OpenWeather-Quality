@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Environmental Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script src="{{ url_for('static', filename='clock.js') }}" defer></script>
+    <script src="{{ url_for('static', filename='animation.js') }}" defer></script>
+    <script src="{{ url_for('static', filename='dataFetch.js') }}" defer></script>
+    <script src="{{ url_for('static', filename='statusIndicator.js') }}" defer></script>
+    <script src="{{ url_for('static', filename='theme.js') }}" defer></script>
+    <script src="{{ url_for('static', filename='componentUpdates.js') }}" defer></script>
+</head>
+
+<body>
+
+    <div class="header">
+        <h1>Weather & Environmental Dashboard</h1>
+        <div class="clock">10:46:56 PM</div>
+        <!-- Toggle Buttons Container -->
+        <div class="toggle-buttons">
+            <button id="rain-toggle">Toggle Rainfall</button>
+            <button id="sun-toggle">Toggle Sunlight</button>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- Temperature Card -->
+        <div class="card temperature">
+            <div class="image-container">
+                <img src="{{ url_for('static', filename='icons/Temp.png') }}" alt="Temperature" class="icon">
+            </div>
+            <h2>Temperature</h2>
+            <div id="temperatureBar" class="indicator-bar temperature-bar">
+                <div id="temperatureIndicator" class="indicator"></div>
+            </div>
+            <p class="data" id="temperature">-- °C</p>
+        </div>
+
+        <!-- Humidity Card -->
+        <div class="card humidity">
+            <div class="image-container">
+                <img src="{{ url_for('static', filename='icons/Humidity.png') }}" alt="Humidity" class="icon">
+            </div>
+            <h2>Humidity</h2>
+            <div id="humidityBar" class="indicator-bar humidity-bar">
+                <div id="humidityIndicator" class="indicator"></div>
+            </div>
+            <p class="data" id="humidity">--%</p>
+        </div>
+
+        <!-- Pressure Card -->
+        <div class="card pressure">
+            <div class="image-container">
+                <img src="{{ url_for('static', filename='icons/Barometer.png') }}" alt="Pressure" class="icon">
+            </div>
+            <h2>Pressure</h2>
+            <div id="pressureBar" class="indicator-bar pressure-bar">
+                <div id="pressureIndicator" class="indicator"></div>
+            </div>
+            <p class="data" id="pressure">-- hPa</p>
+        </div>
+
+        <!-- Luminosity Card -->
+        <div class="card luminosity">
+            <div class="image-container">
+                <img src="{{ url_for('static', filename='icons/Luminosity.png') }}" alt="Luminosity" class="icon">
+            </div>
+            <h2>Luminosity</h2>
+            <div id="lightLuxBar" class="indicator-bar light-lux-bar">
+                <div id="lightLuxIndicator" class="indicator"></div>
+            </div>
+            <p class="data" id="lightLux">-- Lux</p>
+        </div>
+
+        <!-- UV Index Card -->
+        <div class="card uv-index">
+            <div class="image-container">
+                <img src="{{ url_for('static', filename='icons/UV.png') }}" alt="UV Index" class="icon">
+            </div>
+            <h2>UV Index</h2>
+            <div id="uvIndexBar" class="indicator-bar uv-index-bar">
+                <div id="uvIndexIndicator" class="indicator uv-index-indicator"></div>
+            </div>
+            <p class="data" id="uvIndex">Index: --</p>
+        </div>
+
+        <!-- UVA Card -->
+        <div class="card uva">
+            <div class="image-container">
+                <img src="{{ url_for('static', filename='icons/SkinAgingUVA.png') }}" alt="UVA" class="icon">
+            </div>
+            <h2>UVA</h2>
+            <div id="uvaBar" class="indicator-bar uva-bar">
+                <div id="uvaIndicator" class="indicator"></div>
+            </div>
+            <p class="data" id="UVA">-- Power</p>
+        </div>
+
+        <!-- UVB Card -->
+        <div class="card uvb">
+            <div class="image-container">
+                <img src="{{ url_for('static', filename='icons/SkinCancerUVB.png') }}" alt="UVB" class="icon">
+            </div>
+            <h2>UVB</h2>
+            <div id="uvbBar" class="indicator-bar uvb-bar">
+                <div id="uvbIndicator" class="indicator"></div>
+            </div>
+            <p class="data" id="UVB">-- Power</p>
+        </div>
+
+        <!-- Sound Level Card -->
+        <div class="card sound">
+            <div class="image-container">
+                <img src="{{ url_for('static', filename='icons/sound.png') }}" alt="Sound Level" class="icon">
+            </div>
+            <h2>Sound Level</h2>
+            <div id="soundLevelBar" class="indicator-bar sound-bar">
+                <div id="soundLevelIndicator" class="indicator sound-indicator"></div>
+            </div>
+            <div class="sound-levels">
+                <span class="sound-level" id="soundLevelLeft"><span class="label">L:</span> -- dB</span>
+                <span class="sound-level" id="soundLevelRight"><span class="label">R:</span> -- dB</span>
+            </div>
+        </div>
+
+        <!-- PM2.5 Card -->
+        <div class="card pm25">
+            <div class="image-container">
+                <img src="{{ url_for('static', filename='icons/pm.png') }}" alt="PM2.5" class="icon">
+            </div>
+            <h2>PM2.5</h2>
+            <div id="pm25Bar" class="indicator-bar pm25-bar">
+                <div id="pm25Indicator" class="indicator"></div>
+            </div>
+            <p class="data" id="PM25">-- µg/m³</p>
+        </div>
+
+        <!-- PM10 Card -->
+        <div class="card pm10">
+            <div class="image-container">
+                <img src="{{ url_for('static', filename='icons/pm.png') }}" alt="PM10" class="icon">
+            </div>
+            <h2>PM10</h2>
+            <div id="pm10Bar" class="indicator-bar pm10-bar">
+                <div id="pm10Indicator" class="indicator"></div>
+            </div>
+            <p class="data" id="PM10">-- µg/m³</p>
+        </div>
+    </div>
+
+    <div id="rain-animation" class="weather-animation"></div>
+    <div id="sun-animation" class="weather-animation"></div>
+
+</body>
+
+</html>
