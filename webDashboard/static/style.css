@@ -82,42 +82,38 @@ body.rainfall {
 **   CARDS CSS
 ####################################################### */
 .container {
-    height: auto;
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-around;
-    gap: 2em; /* Adjusted for responsiveness */
-    padding: 2em; /* Responsive padding */
-    max-width: 100vw;
-    overflow-x: hidden;
-    justify-content: center; /* Adjusted from space-around for demo */
-    box-sizing: border-box; /* Include padding in the width calculation */
-    max-width: calc(100vw - 40px); /* Subtract the padding from the viewport width */
+    justify-content: center; /* Horizontally aligns items */
+    align-content: flex-start; /* Aligns rows of items towards the start of the container */
+    gap: 2em;
+    padding: 2em;
+    max-width: calc(100vw - 4em); /* Accounts for padding */
+    box-sizing: border-box;
     margin: auto;
-    overflow-y: auto; /* Allows vertical scrolling within container if needed */
-    height: calc(100vh - 40px); /* Example: Adjust based on your layout */
+    overflow-x: hidden;
+    overflow-y: auto; /* Allows scrolling if content exceeds container size */
+    min-height: calc(100vh - 4em); /* Adjust based on layout */
 }
 
-
 .card {
-    border: 1px solid #e0e0e0;
-    /* Light border for definition */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    /* Soft shadow for depth */
+    border: 1px solid #e0e0e0; /* Light border for definition */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
     background: var(--card-bg-color);
-    border-radius: var(--border-radius);
-    /* Adjusting width for a more compact look */
-    width: 250px;
-    /* Narrower cards */
-    margin: 15px;
-    padding: 20px;
+    border-radius: var(--border-radius); /* Use CSS variable for border-radius */
+    width: 250px; /* Width set for a more compact look */
+    margin: 15px; /* Margin around cards */
+    padding: 20px; /* Padding inside cards */
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-between;
-    transition: transform var(--transition-speed), box-shadow var(--transition-speed);
-    transition: all 0.3s ease-in-out;
-    /* Smooth transition for hover effects */
+    justify-content: space-between; /* Distribute space evenly between items */
+    transition: all 0.3s ease-in-out; /* Smooth transition for hover effects */
+    
+    /* Prevent vertical stretching */
+    align-self: flex-start; /* Aligns card to start along the cross axis, preventing vertical stretch */
+    min-height: 300px; /* Minimum height to ensure cards do not become too short */
+    max-height: 600px; /* Maximum height to ensure cards do not stretch too tall */
 }
 
 /* Data Points Style Enhancement */
