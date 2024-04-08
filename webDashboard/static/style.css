@@ -2,8 +2,8 @@
 ** Enhanced General Website Styles
 ####################################################### */
 :root {
-    --bg-color: #f7f7f7;
-    --card-bg-color: #ffffff;
+    --bg-color: #dddddd;
+    --card-bg-color: #f7f7f7;
     --card-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
     --border-radius: 10px;
     /*Cards border radius */
@@ -11,7 +11,7 @@
     /* Dark blue for a modern touch */
     --secondary-color: #16a085;
     /* Soft green for interactive elements */
-    --accent-color: #2980b9;
+    --accent-color: #75449a;
     /* Bright blue for accents */
     --error-color: #e74c3c;
     /* Error or warning indications */
@@ -28,13 +28,21 @@
 
 }
 
-body,
-html {
-    height: 100%;
+body, html {
     margin: 0;
+    padding: 0;
+    width: 100vw; /* Ensure full viewport width */
+    height: 100vh; /* Ensure full viewport height */
+    overflow-x: hidden; /* Prevent Horizontal Scroll */
     font-family: var(--font-family);
     background: var(--bg-color);
     color: var(--primary-color);
+}
+
+body.rainfall {
+    /* Slight adjustment to not fully obscure the background animation */
+    background-color: rgba(200, 200, 210, 0.5); /* Semi-transparent blue background */
+    transition: background-color 0.3s ease;
 }
 
 /* Improved Header Style */
@@ -74,12 +82,20 @@ html {
 **   CARDS CSS
 ####################################################### */
 .container {
+    height: auto;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
-    gap: 20px;
-    /* Adjust the gap between cards for better spacing */
-    padding: 20px;
+    gap: 2em; /* Adjusted for responsiveness */
+    padding: 2em; /* Responsive padding */
+    max-width: 100vw;
+    overflow-x: hidden;
+    justify-content: center; /* Adjusted from space-around for demo */
+    box-sizing: border-box; /* Include padding in the width calculation */
+    max-width: calc(100vw - 40px); /* Subtract the padding from the viewport width */
+    margin: auto;
+    overflow-y: auto; /* Allows vertical scrolling within container if needed */
+    height: calc(100vh - 40px); /* Example: Adjust based on your layout */
 }
 
 
@@ -110,11 +126,11 @@ html {
     /* Use the accent color to highlight data */
     font-size: 24px;
     /* Increase font size for better visibility */
-    font-weight: 700;
+    font-weight: 400;
     /* Make the font weight bolder */
     margin: 10px 0 20px;
     /* Adjust margins for proper spacing */
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+
     /* Soft shadow for depth */
     font-family: 'Poppins', sans-serif;
     /* Use a modern, clean font */
@@ -179,7 +195,7 @@ html {
 .button,
 .toggle-buttons button {
     background-color: var(--accent-color);
-    color: #ffffff;
+    color: #f5f5f5;
     padding: 10px 20px;
     border: none;
     border-radius: 20px;
@@ -192,7 +208,7 @@ html {
 
 .button:hover,
 .toggle-buttons button:hover {
-    background-color: darken(var(--accent-color), 10%);
+    background-color: gray;
     transform: scale(1.05);
     /* Slightly enlarges button on hover */
 }
@@ -231,24 +247,8 @@ html {
 
 /* Modernized Gradient Styles for Various Indicators */
 .temperature-bar {
-    background: linear-gradient(to right,
-            #81d4fa
-            /* cool/blue */
-            ,
-            #80cbc4
-            /* slightly warmer/green */
-            ,
-            #ffee58
-            /* yellow */
-            ,
-            #ffab91
-            /* warm/orange */
-            ,
-            #ff7043
-            /* warmer/red */
-        );
+    background: linear-gradient(to right, #81d4fa, #80cbc4, #ffee58, #ffab91, #ff7043);
 }
-
 
 .humidity-bar {
     background: linear-gradient(to right, #ffccbc, #ffe082, #80cbc4, #81d4fa);
@@ -271,63 +271,68 @@ html {
 }
 
 .uvb-bar {
-    background: linear-gradient(to right,
-            #fce4ec 0%,
-            #f48fb1 50%,
-            #c2185b 100%);
+    background: linear-gradient(to right, #fce4ec 0%, #f48fb1 50%, #c2185b 100%);
 }
 
 .pm25-bar {
-    background: linear-gradient(to right,
-            #c5e1a5 0%,
-            #dcedc8 25%,
-            #fff59d 50%,
-            #ffcc80 75%,
-            #ef9a9a 100%);
+    background: linear-gradient(to right, #c5e1a5 0%, #dcedc8 25%, #fff59d 50%, #ffcc80 75%, #ef9a9a 100%);
 }
 
 .pm10-bar {
-    background: linear-gradient(to right,
-            #c5e1a5 0%,
-            #dcedc8 25%,
-            #fff59d 50%,
-            #ffcc80 75%,
-            #e57373 100%);
+    background: linear-gradient(to right, #c5e1a5 0%, #dcedc8 25%, #fff59d 50%, #ffcc80 75%, #e57373 100%);
 }
 
 .sound-bar {
-    background: linear-gradient(to right,
-            #80deea 0%,
-            #fff59d 50%,
-            #ffb74d 75%,
-            #ef9a9a 100%);
+    background: linear-gradient(to right, #80deea 0%, #fff59d 50%, #ffb74d 75%, #ef9a9a 100%);
+}
+
+/* #######################################################
+ ###            Weather
+ ####################################################### */
+
+ .weather-animation {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-size: cover;
+    display: none;
+    z-index: -1; /* Make sure this z-index is higher than the body content but possibly lower than direct interactive elements or modals */
+}
+
+
+#rain-animation.active,
+#sun-animation.active {
+    display: block; /* Show animation when active */
+    /* Removed duplicate properties that are already declared in .weather-animation */
+}
+
+/* Adjusted to correct path considering Flask's static files serving convention */
+#rain-animation.active {
+    background-image: url('icons/rain-animation.gif'); /* Correct path for Flask projects */
+}
+
+/* Adjusted for the sun-animation if needed */
+#sun-animation.active {
+    background-image: url('icons/sun-animation.gif'); /* Example path, adjust accordingly */
 }
 
 /* #######################################################
  ###            Responsive adjustments
  ####################################################### */
 
-/* Responsive Adjustments for Improved Layout on Various Devices */
+/* Combined media queries for optimization and clearer comprehension */
 @media screen and (max-width: 960px) {
     .container {
-        justify-content: center;
-        /* Center cards on medium screens */
+        justify-content: center; /* Center cards on medium screens */
     }
 
     .card {
-        max-width: 45%;
-        /* Adjust for better width on smaller screens */
+        max-width: 45%; /* Adjusts for better width on smaller screens */
     }
-}
 
-@media screen and (max-width: 600px) {
-    .card {
-        max-width: 90%;
-        /* Full width cards on very small screens for readability */
-    }
-}
-
-@media screen and (max-width: 768px) {
+    /* Since 768px also falls under 960px, I've combined these rules */
     .header {
         justify-content: center;
         text-align: center;
@@ -335,11 +340,14 @@ html {
 
     .clock,
     .toggle-buttons {
-        flex-basis: 100%;
-        /* Full width on small screens */
-        justify-content: center;
-        /* Center-align these elements */
-        margin-top: 10px;
-        /* Adds vertical spacing */
+        flex-basis: 100%; /* Full width on smaller screens */
+        justify-content: center; /* Center-align these elements */
+        margin-top: 10px; /* Adds vertical spacing */
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .card {
+        max-width: 90%; /* Full width cards on very small screens for readability */
     }
 }

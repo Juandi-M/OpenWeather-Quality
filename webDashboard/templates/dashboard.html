@@ -16,10 +16,9 @@
 </head>
 
 <body>
-
     <div class="header">
         <h1>Weather & Environmental Dashboard</h1>
-        <div class="clock">10:46:56 PM</div>
+        <div class="clock" id="clock">00:00:00</div>
         <!-- Toggle Buttons Container -->
         <div class="toggle-buttons">
             <button id="rain-toggle">Toggle Rainfall</button>
@@ -121,16 +120,16 @@
             <div id="soundLevelBar" class="indicator-bar sound-bar">
                 <div id="soundLevelIndicator" class="indicator sound-indicator"></div>
             </div>
-            <div class="sound-levels">
-                <span class="sound-level" id="soundLevelLeft"><span class="label">L:</span> -- dB</span>
-                <span class="sound-level" id="soundLevelRight"><span class="label">R:</span> -- dB</span>
+            <div class="sound-levels" style="font-size: 20px; font-weight: bold; color: var(--accent-color);">
+                <span class="sound-level" id="soundLevelLeft"><span class="label" style="font-weight: normal;">L:</span> -- dB</span>
+                <span class="sound-level" id="soundLevelRight"><span class="label" style="font-weight: normal;">R:</span> -- dB</span>
             </div>
         </div>
 
         <!-- PM2.5 Card -->
         <div class="card pm25">
             <div class="image-container">
-                <img src="{{ url_for('static', filename='icons/pm.png') }}" alt="PM2.5" class="icon">
+                <img src="{{ url_for('static', filename='icons/pm25.png') }}" alt="PM2.5" class="icon">
             </div>
             <h2>PM2.5</h2>
             <div id="pm25Bar" class="indicator-bar pm25-bar">
@@ -142,7 +141,7 @@
         <!-- PM10 Card -->
         <div class="card pm10">
             <div class="image-container">
-                <img src="{{ url_for('static', filename='icons/pm.png') }}" alt="PM10" class="icon">
+                <img src="{{ url_for('static', filename='icons/pm10.png') }}" alt="PM10" class="icon">
             </div>
             <h2>PM10</h2>
             <div id="pm10Bar" class="indicator-bar pm10-bar">
@@ -152,6 +151,8 @@
         </div>
     </div>
 
+
+    
     <div id="rain-animation" class="weather-animation"></div>
     <div id="sun-animation" class="weather-animation"></div>
 
