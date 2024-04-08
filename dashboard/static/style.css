@@ -99,9 +99,10 @@ body, html {
     border-radius: 50%;
     position: absolute;
     top: 50%;
-    left: 0; /* Start at the beginning of the bar */
-    transform: translate(-50%, -50%);
+    left: 0; /* Initial position at the beginning of the bar */
+    transform: translateY(-50%); /* Center the indicator vertically */
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    transition: left 0.3s ease; /* Smooth transition for moving the indicator */
 }
 
 /* Specific styles for UV index bar */
